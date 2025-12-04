@@ -71,6 +71,10 @@ resilience4j:
           - org.springframework.web.reactive.function.client.WebClientResponseException
           - java.util.concurrent.TimeoutException
           - java.io.IOException
+        ignore-exceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException.NotFound
+          - org.springframework.web.reactive.function.client.WebClientResponseException.BadRequest
+          - com.bank.account.exception.CustomerNotFoundException
     instances:
       customerService:
         base-config: default      
