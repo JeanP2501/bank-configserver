@@ -53,7 +53,7 @@ resilience4j:
     configs:
       default:
         # Número de llamadas para calcular tasa de fallos
-        sliding-window-size: 10
+        sliding-window-size: 5
         # Tipo de ventana: COUNT_BASED o TIME_BASED
         sliding-window-type: COUNT_BASED
         # Umbral de fallos para abrir el circuito (50%)
@@ -61,9 +61,9 @@ resilience4j:
         # Tiempo en estado OPEN antes de pasar a HALF_OPEN (en segundos)
         wait-duration-in-open-state: 10s
         # Número de llamadas permitidas en HALF_OPEN
-        permitted-number-of-calls-in-half-open-state: 3
+        permitted-number-of-calls-in-half-open-state: 2
         # Llamadas mínimas antes de calcular tasa de fallos
-        minimum-number-of-calls: 5
+        minimum-number-of-calls: 3
         # Transición automática de OPEN a HALF_OPEN
         automatic-transition-from-open-to-half-open-enabled: true
         # Excepciones que se consideran fallos
@@ -79,7 +79,7 @@ resilience4j:
   retry:
     configs:
       default:
-        max-attempts: 3
+        max-attempts: 2
         wait-duration: 1s
         retry-exceptions:
           - org.springframework.web.reactive.function.client.WebClientResponseException.InternalServerError
@@ -92,7 +92,7 @@ resilience4j:
   timelimiter:
     configs:
       default:
-        timeout-duration: 3s
+        timeout-duration: 2s
     instances:
       customerService:
         base-config: default
