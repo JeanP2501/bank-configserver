@@ -6,18 +6,34 @@ spring:
     name: credit
   data:
     mongodb:
-      uri: mongodb://localhost:27017/bankdb
+      uri: mongodb://mongodb:27017/bankdb
       database: bankdb
 
-# Customer Service URL for WebClient
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cbank-eurekaserver:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    hostname: ${HOSTNAME:credit}
+
+# Customer Service URL - Usar Eureka
 customer:
   service:
-    url: http://localhost:8081
+    url: http://customer
 
 logging:
   level:
     root: INFO
     com.bank: DEBUG
     org.springframework.data.mongodb: DEBUG
+    org.springframework.cloud.config: DEBUG
+    com.netflix.discovery: DEBUG
+    com.netflix.eureka: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
