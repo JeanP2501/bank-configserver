@@ -9,10 +9,26 @@ spring:
       uri: mongodb://mongodb:27017/bankdb
       database: bankdb
 
+# IMPORTANTE: Agregar esta sección de Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cbank-eurekaserver:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+
 logging:
   level:
     root: INFO
     com.bank: DEBUG
     org.springframework.data.mongodb: DEBUG
+    org.springframework.cloud.config: DEBUG
+    com.netflix.discovery: DEBUG
+    com.netflix.eureka: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
