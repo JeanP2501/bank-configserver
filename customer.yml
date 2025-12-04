@@ -6,7 +6,7 @@ spring:
     name: customer
   data:
     mongodb:
-      uri: mongodb://localhost:27017/bankdb
+      uri: mongodb://mongodb:27017/bankdb
       database: bankdb
 
 logging:
