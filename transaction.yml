@@ -102,3 +102,7 @@ resilience4j:
         base-config: default
       creditService:
         base-config: default
+
+kafka:
+  consumer:
+    group-id: transaction-service-group

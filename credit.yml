@@ -92,3 +92,7 @@ resilience4j:
     instances:
       customerService:
         base-config: default
+
+kafka:
+  consumer:
+    group-id: credit-service-group
