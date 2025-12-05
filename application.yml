@@ -1,0 +1,16 @@
+spring:
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    properties:
+      key.serializer: org.apache.kafka.common.serialization.StringSerializer
+      value.serializer: org.apache.kafka.common.serialization.StringSerializer
+      key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+# Topics de la aplicación (compartido para todos los microservicios)
+kafka:
+  topics:
+    customer-events: customer-events
+    account-events: account-events
+    credit-events: credit-events
+    transaction-events: transaction-events
