@@ -6,13 +6,13 @@ spring:
     name: credit
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/bankdb-credit
+      uri: mongodb://localhost:27017/bankdb-credit
       database: bankdb-credit
 
 eureka:
   client:
     service-url:
-      defaultZone: http://cbank-eurekaserver:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
     registry-fetch-interval-seconds: 5
@@ -20,9 +20,8 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 5
-    hostname: ${HOSTNAME:credit}
+    hostname: localhost
 
-# Customer Service URL - Usar Eureka
 customer:
   service:
     url: http://customer
@@ -47,7 +46,6 @@ management:
     health:
       show-details: always
 
-# Configuración de Resilience4j Circuit Breaker
 resilience4j:
   circuitbreaker:
     configs:
@@ -71,7 +69,6 @@ resilience4j:
       customerService:
         base-config: default      
 
-  # Configuración de Retry (opcional pero complementario)
   retry:
     configs:
       default:
@@ -84,7 +81,6 @@ resilience4j:
       customerService:
         base-config: default
 
-  # Configuración de Time Limiter (timeout)
   timelimiter:
     configs:
       default:

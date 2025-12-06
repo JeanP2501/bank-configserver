@@ -1,18 +1,18 @@
 server:
-  port: 8083
+  port: 8082
 
 spring:
   application:
-    name: credit
+    name: account
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/bankdb-credit
-      database: bankdb-credit
+      uri: mongodb://localhost:27017/bankdb-account
+      database: bankdb-account
 
 eureka:
   client:
     service-url:
-      defaultZone: http://cbank-eurekaserver:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
     registry-fetch-interval-seconds: 5
@@ -20,9 +20,8 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 5
-    hostname: ${HOSTNAME:credit}
+    hostname: localhost
 
-# Customer Service URL - Usar Eureka
 customer:
   service:
     url: http://customer
@@ -47,7 +46,6 @@ management:
     health:
       show-details: always
 
-# Configuración de Resilience4j Circuit Breaker
 resilience4j:
   circuitbreaker:
     configs:
@@ -66,12 +64,11 @@ resilience4j:
         ignore-exceptions:
           - org.springframework.web.reactive.function.client.WebClientResponseException.NotFound
           - org.springframework.web.reactive.function.client.WebClientResponseException.BadRequest
-          - com.bank.credit.exception.CustomerNotFoundException
+          - com.bank.account.exception.CustomerNotFoundException
     instances:
       customerService:
         base-config: default      
 
-  # Configuración de Retry (opcional pero complementario)
   retry:
     configs:
       default:
@@ -84,7 +81,6 @@ resilience4j:
       customerService:
         base-config: default
 
-  # Configuración de Time Limiter (timeout)
   timelimiter:
     configs:
       default:
@@ -95,4 +91,4 @@ resilience4j:
 
 kafka:
   consumer:
-    group-id: credit-service-group
+    group-id: account-service-group

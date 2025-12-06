@@ -6,8 +6,8 @@ spring:
     name: account
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/bankdb
-      database: bankdb
+      uri: mongodb://mongodb:27017/bankdb-account
+      database: bankdb-account
 
 eureka:
   client:

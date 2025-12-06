@@ -6,13 +6,13 @@ spring:
     name: customer
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/bankdb-customer
+      uri: mongodb://localhost:27017/bankdb-customer
       database: bankdb-customer
 
 eureka:
   client:
     service-url:
-      defaultZone: http://cbank-eurekaserver:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
     registry-fetch-interval-seconds: 5
@@ -20,7 +20,7 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 5
-    hostname: ${HOSTNAME:customer}
+    hostname: localhost
 
 logging:
   level:
