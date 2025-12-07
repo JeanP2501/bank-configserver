@@ -1,0 +1,50 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: catalogs
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017/bakndb-catalogs
+      database: bakndb-catalogs
+    redis:
+      host: localhost
+      port: 6379
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://cbank-eurekaserver:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    hostname: ${HOSTNAME:catalogs}
+
+logging:
+  level:
+    root: INFO
+    com.bank: DEBUG
+    org.springframework.data.mongodb: DEBUG
+    org.springframework.cloud.config: DEBUG
+    com.netflix.discovery: DEBUG
+    com.netflix.eureka: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+cache:
+  ttl:
+    catalog: 3600
