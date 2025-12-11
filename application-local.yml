@@ -13,3 +13,20 @@ kafka:
     account-events: account-events
     credit-events: credit-events
     transaction-events: transaction-events
+
+# Config Account Types
+account-types:
+  saving:
+    maintenance-fee: 0
+    month-limit-transactions: 12
+    transaction-fee: 5
+    min-amount: 0
+  current:
+    maintenance-fee: 5
+    month-limit-transactions: 0
+    commission-day: 21
+    transaction-fee: 5
+    min-amount: 0
+  fixed-term:
+    maintenance-fee: 0
+    min-amount: 0
