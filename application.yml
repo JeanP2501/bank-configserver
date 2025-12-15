@@ -23,8 +23,8 @@ account-types:
     free-transaction-per-month: 3
     minimum-opening-amount: 50.00    
   current:
-    maintenance-fee: 10    
+    maintenance-fee: 10.00
     commission-day: 15        
   fixed-term:    
-    min-amount: 5000
+    min-amount: 5000.00
     transaction-day: 15
