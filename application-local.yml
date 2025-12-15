@@ -17,16 +17,13 @@ kafka:
 # Config Account Types
 account-types:
   saving:
-    maintenance-fee: 0
-    month-limit-transactions: 12
-    transaction-fee: 5
-    min-amount: 0
+    max-monthly-transactions: 5
+    comission-per-transaction: 1.50
+    free-transaction-per-month: 3
+    minimum-opening-amount: 50.00    
   current:
-    maintenance-fee: 5
-    month-limit-transactions: 0
-    commission-day: 21
-    transaction-fee: 5
-    min-amount: 0
-  fixed-term:
-    maintenance-fee: 0
-    min-amount: 0
+    maintenance-fee: 10    
+    commission-day: 15        
+  fixed-term:    
+    min-amount: 5000
+    transaction-day: 15
