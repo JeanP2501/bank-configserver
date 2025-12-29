@@ -1,0 +1,95 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: report
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    hostname: localhost
+
+transaction:
+  service:
+    url: http://transaction
+
+logging:
+  level:
+    root: INFO
+    com.bank: DEBUG
+    org.springframework.data.mongodb: DEBUG
+    org.springframework.cloud.config: DEBUG
+    com.netflix.discovery: DEBUG
+    com.netflix.eureka: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 5
+        sliding-window-type: COUNT_BASED
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 2
+        minimum-number-of-calls: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        record-exceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException
+          - java.util.concurrent.TimeoutException
+          - java.io.IOException
+        ignore-exceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException.NotFound
+          - org.springframework.web.reactive.function.client.WebClientResponseException.BadRequest          
+    instances:
+      accountService:
+        base-config: default
+      creditService:
+        base-config: default
+
+  retry:
+    configs:
+      default:
+        max-attempts: 2
+        wait-duration: 1s
+        retry-exceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException.InternalServerError
+          - org.springframework.web.reactive.function.client.WebClientResponseException.ServiceUnavailable
+    instances:
+      accountService:
+        base-config: default
+      creditService:
+        base-config: default
+
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 2s
+    instances:
+      accountService:
+        base-config: default
+      creditService:
+        base-config: default
+
+# kafka:
+#   consumer:
+#     group-id: transaction-service-group
