@@ -1,9 +1,13 @@
 server:
-  port: 8086
+  port: 8087
 
 spring:
   application:
-    name: report
+    name: debitcard
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017/bankdb-transaction
+      database: bankdb-debit
 
 eureka:
   client:
@@ -18,6 +22,12 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     hostname: localhost
 
+customer:
+  service:
+    url: http://customer
+account:
+  service:
+    url: http://account
 transaction:
   service:
     url: http://transaction
