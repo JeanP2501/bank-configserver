@@ -21,6 +21,16 @@ eureka:
 transaction:
   service:
     url: http://transaction
+account:
+  service:
+    url: http://account
+credit:
+  service:
+    url: http://credit
+debit:
+  service:
+    url: http://debit
+
 
 logging:
   level:
