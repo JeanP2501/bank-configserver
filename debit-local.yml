@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: debitcard
+    name: debit
   data:
     mongodb:
       uri: mongodb://localhost:27017/bankdb-debit
