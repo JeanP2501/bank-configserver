@@ -1,0 +1,53 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: security
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/bankdb-auth
+      database: bankdb-auth
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    hostname: localhost
+
+logging:
+  level:
+    root: INFO
+    com.bank: DEBUG
+    org.springframework.data.mongodb: DEBUG
+    org.springframework.cloud.config: DEBUG
+    com.netflix.discovery: DEBUG
+    com.netflix.eureka: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+jwt:
+  secret: TuClaveSecretaMuyLargaYSeguraDeAlMenos256Bits # Cambia esto
+  expiration: 3600000 # 1 hora en milisegundos
+
+spring:
+  security:
+    user:
+      name: admin
+      password: admin123
