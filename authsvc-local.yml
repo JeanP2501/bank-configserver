@@ -8,10 +8,6 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/bankdb-auth
       database: bankdb-auth
-  security:
-    user:
-      name: admin
-      password: admin123
 
 eureka:
   client:
