@@ -49,9 +49,3 @@ management:
 jwt:
   secret: TuClaveSecretaMuyLargaYSeguraDeAlMenos256Bits # Cambia esto
   expiration: 3600000 # 1 hora en milisegundos
-
-spring:
-  security:
-    user:
-      name: admin
-      password: admin123
