@@ -8,6 +8,10 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/bankdb-auth
       database: bankdb-auth
+  security:
+    user:
+      name: admin
+      password: admin123
 
 eureka:
   client:
@@ -46,8 +50,3 @@ jwt:
   secret: TuClaveSecretaMuyLargaYSeguraDeAlMenos256Bits # Cambia esto
   expiration: 3600000 # 1 hora en milisegundos
 
-spring:
-  security:
-    user:
-      name: admin
-      password: admin123
