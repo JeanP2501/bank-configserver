@@ -100,6 +100,9 @@ resilience4j:
       creditService:
         base-config: default
 
-# kafka:
-#   consumer:
-#     group-id: transaction-service-group
+kafka:
+  topics:
+    debit-query: debit-account-query
+    debit-response: debit-account-response
+  consumer:
+    group-id: debit-service-group
