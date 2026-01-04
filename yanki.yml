@@ -43,5 +43,8 @@ management:
       show-details: always
 
 kafka:
+  topics:
+    debit-query: debit-account-query
+    debit-response: debit-account-response
   consumer:
     group-id: yanki-service-group
