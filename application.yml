@@ -14,6 +14,8 @@ kafka:
     account-events: account-events
     credit-events: credit-events
     transaction-events: transaction-events
+    debit-events: debit-events
+    yanki-events: yanki-events
 
 # Config Account Types
 account-types:
@@ -21,10 +23,10 @@ account-types:
     max-monthly-transactions: 5
     comission-per-transaction: 1.50
     free-transaction-per-month: 3
-    minimum-opening-amount: 50.00    
+    minimum-opening-amount: 50.00
   current:
     maintenance-fee: 10.00
-    commission-day: 15        
-  fixed-term:    
+    commission-day: 15
+  fixed-term:
     min-amount: 5000.00
     transaction-day: 15
